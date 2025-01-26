@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Günlük protein ihtiyacınızı hesaplayın ve fitness hedeflerinize ulaşın.">
+    <title>Ismayilov Fitness</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ff6e7f, #bfe9ff);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .calculator {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            padding: 2.5rem;
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .calculator h2 {
+            color: #ff6e7f;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .calculator label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .calculator input, .calculator select {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1.5rem;
+            border: 2px solid #ff6e7f;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .calculator button {
+            width: 100%;
+            padding: 0.85rem;
+            background: linear-gradient(to right, #ff6e7f, #bfe9ff);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+        }
+
+        .calculator button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        #result {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #007bff;
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Ismayilov Fitness</h1>
+</header>
+
+<main>
+    <div class="calculator">
+        <h2>Günlük Protein Hesaplayıcı</h2>
+        <form id="proteinForm">
+            <label for="weight">Kilonuzu girin (kg):</label>
+            <input type="number" id="weight" name="weight" placeholder="Örn: 70" required>
+
+            <label for="activityLevel">Aktivite seviyenizi seçin:</label>
+            <select id="activityLevel" name="activityLevel" required>
+                <option value="">-- Seçim yapın --</option>
+                <option value="1.2">Düşük aktivite</option>
+                <option value="1.5">Orta aktivite</option>
+                <option value="1.8">Yüksek aktivite</option>
+            </select>
+
+            <button type="button" onclick="calculateProtein()">Hesapla</button>
+        </form>
+        <p id="result"></p>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2025 Ismayilov Fitness. Tüm hakları saklıdır.</p>
+</footer>
+
+<script>
+    function calculateProtein() {
+        const weight = parseFloat(document.getElementById('weight').value);
+        const activityLevel = parseFloat(document.getElementById('activityLevel').value);
+
+        if (!weight || !activityLevel) {
+            alert('Lütfen kilonuzu girin ve aktivite seviyenizi seçin.');
+            return;
+        }
+
+        const proteinNeeds = (weight * activityLevel).toFixed(2);
+        document.getElementById('result').textContent = `Günlük protein ihtiyacınız yaklaşık ${proteinNeeds} gramdır.`;
+    }
+</script>
+
+</body>
+</html>
